@@ -77,3 +77,8 @@ Route::delete('/user/{id}', [ManagementUserController::class, 'destroy']);
 
 //Acara 6
 Route::get('beranda', [ManagementUserController::class, 'index']);
+
+//Acara 7
+Route::group(['namespace' => 'App\Http\Controllers\frontend'], function() {
+    Route::resource('homes', 'HomeController');
+});
