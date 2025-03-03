@@ -82,3 +82,8 @@ Route::get('beranda', [ManagementUserController::class, 'index']);
 Route::group(['namespace' => 'App\Http\Controllers\frontend'], function() {
     Route::resource('homes', 'HomeController');
 });
+
+//Acara 8
+Route::group(['namespace' => 'App\Http\Controllers\backend'], function() {
+    Route::resource('dashboard', 'DashboardController');
+});
