@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManagementUserController;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
@@ -87,3 +88,6 @@ Route::group(['namespace' => 'App\Http\Controllers\frontend'], function() {
 Route::group(['namespace' => 'App\Http\Controllers\backend'], function() {
     Route::resource('dashboard', 'DashboardController');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
