@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManagementUserController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\CheckAge;
+
 
 
 Route::get('/', function () {
@@ -11,16 +13,15 @@ Route::get('/', function () {
 
 //Acara 3
 
-Route::get('foo', function() {
+Route::get('foo', function () {
     return 'Hellow World';
 });
 
-Route::get('user/{id}', function($id) {
+Route::get('user/{id}', function ($id) {
     return 'User ' . $id;
 });
 
-Route::get('post/{post}/comments/{comment}', function ($postID, $commentID) {
-});
+Route::get('post/{post}/comments/{comment}', function ($postID, $commentID) {});
 
 //Method Route
 //Route::get($uri, $callback);
@@ -39,9 +40,7 @@ Route::get('user/{id}/profile', function ($id) {
     return 'Hello ' . $id;
 })->name('profile')->middleware('check.profile');
 
-Route::get('user/{id}/profiles', function ($id) {
-
-})->name('profiles');
+Route::get('user/{id}/profiles', function ($id) {})->name('profiles');
 
 //Route bersama
 Route::get('test-url', function () {
@@ -50,22 +49,18 @@ Route::get('test-url', function () {
 
 //middleware
 Route::middleware(['first', 'second'])->group(function () {
-    Route::get('product', function () {
+    Route::get('product', function () {});
 
-    });
-
-    Route::get('member', function () {
-
-    });
+    Route::get('member', function () {});
 });
 
 //namespace
-Route::namespace('Admin')->group(function() {});
+Route::namespace('Admin')->group(function () {});
 
 //domain routing
 Route::domain('{account}.myapp.com')->group(function () {
     Route::get('users/{id}', fn($account, $id) => '')->name('users');
-    });
+});
 
 //Acara 5
 Route::get('/user', [ManagementUserController::class, 'index']);
@@ -80,14 +75,45 @@ Route::delete('/user/{id}', [ManagementUserController::class, 'destroy']);
 Route::get('beranda', [ManagementUserController::class, 'index']);
 
 //Acara 7
-Route::group(['namespace' => 'App\Http\Controllers\frontend'], function() {
+Route::group(['namespace' => 'App\Http\Controllers\frontend'], function () {
     Route::resource('homes', 'HomeController');
 });
 
 //Acara 8
-Route::group(['namespace' => 'App\Http\Controllers\backend'], function() {
+Route::group(['namespace' => 'App\Http\Controllers\backend'], function () {
     Route::resource('dashboard', 'DashboardController');
 });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Acara 12
+Route::get('admin/profile', function () {
+    //
+})->middleware('auth');
+
+Route::get('/', function () {
+    //
+})->middleware('first', 'second');
+
+Route::get('admin/profile', function () {
+    //
+})->middleware(CheckAge::class);
+
+Route::get('/', function () {
+    //
+})->middleware('web');
+
+Route::group(['middleware' => ['web']], function () {});
+
+Route::middleware(['web', 'subscribed'])->group(function () {});
+
+Route::put('post/{id}', function ($id) {
+    //
+})->middleware('role:editor');
+
+//Acara 13
+Route::group(['namespace' => 'App\Http\Controllers\Backend'], function () {
+    Route::resource('pendidikan', 'pendidikanController');
+    Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
+});
