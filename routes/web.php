@@ -117,3 +117,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Backend'], function () {
     Route::resource('pendidikan', 'pendidikanController');
     Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
 });
+
+//Acara 14
+Route::group(['namescape' => 'Backend'], function()
+{
+    Route::resource('dasboard', 'DasboardController');
+    Route::resource('pendidikan', 'PendidikanController');
+});

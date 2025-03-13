@@ -23,7 +23,7 @@ class PengalamanKerjaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:3',
+            'nama' => 'required|string|min:3',
             'jabatan' => 'required|string|min:2',
             'tahun_masuk' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
             'tahun_keluar' => 'nullable|digits:4|integer|min:1900|max:' . date('Y'),
@@ -44,7 +44,7 @@ class PengalamanKerjaController extends Controller
     public function update(Request $request)
     {
         DB::table('pengalaman_kerja')->where('id', $request->id)->update([
-            'name' => $request->name,
+            'nama' => $request->nama,
             'jabatan' => $request->jabatan,
             'tahun_masuk' => $request->tahun_masuk,
             'tahun_keluar' => $request->tahun_keluar
