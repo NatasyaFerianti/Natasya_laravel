@@ -27,7 +27,7 @@
                  </ul>
              </div>
              @endif
-             <form action="{{ route('pengalaman_kerja.store') }}" method="POST">
+             <form action="{{ isset($pengalaman_kerja) ? route('pengalaman_kerja.update', $pengalaman_kerja->id) : route('pengalaman_kerja.store') }}" method="POST">
                  @csrf
                  <div class="form-group mb-3"> <!-- Margin bawah -->
                      <label>Nama Perusahaan</label>

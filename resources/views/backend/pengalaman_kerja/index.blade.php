@@ -58,13 +58,13 @@
                                  <td>{{ $item->tahun_masuk }}</td>
                                  <td>{{ $item->tahun_keluar ?? '-' }}</td>
                                  <td>
-                                     <a href="{{ route('pengalaman_kerja.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                     <a class="btn btn-warning btn-sm" href="{{ route('pengalaman_kerja.edit', $item->id) }}">
                                          <i class="fa fa-edit"></i> Edit
                                      </a>
                                      <form action="{{ route('pengalaman_kerja.destroy', $item->id) }}" method="POST" style="display:inline;">
                                          @csrf
                                          @method('DELETE')
-                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')">
                                              <i class="fa fa-trash"></i> Hapus
                                          </button>
                                      </form>
