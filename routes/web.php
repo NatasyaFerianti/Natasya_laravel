@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManagementUserController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\backend\PendidikanController;
+use App\Http\Controllers\backend\PengalamanKerjaController;
 use App\Http\Middleware\CheckAge;
 
 
@@ -79,9 +81,11 @@ Route::group(['namespace' => 'App\Http\Controllers\frontend'], function () {
     Route::resource('homes', 'HomeController');
 });
 
-//Acara 8
+//Acara 8 dan acara 13-16
 Route::group(['namespace' => 'App\Http\Controllers\backend'], function () {
     Route::resource('dashboard', 'DashboardController');
+    Route::resource('pendidikan', 'PendidikanController');
+    Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
 });
 Auth::routes();
 
@@ -111,16 +115,3 @@ Route::middleware(['web', 'subscribed'])->group(function () {});
 Route::put('post/{id}', function ($id) {
     //
 })->middleware('role:editor');
-
-//Acara 13
-Route::group(['namespace' => 'App\Http\Controllers\Backend'], function () {
-    Route::resource('pendidikan', 'pendidikanController');
-    Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
-});
-
-//Acara 14
-Route::group(['namescape' => 'Backend'], function()
-{
-    Route::resource('dasboard', 'DasboardController');
-    Route::resource('pendidikan', 'PendidikanController');
-});
