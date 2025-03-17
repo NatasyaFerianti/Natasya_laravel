@@ -8,7 +8,7 @@ use App\Http\Controllers\backend\PengalamanKerjaController;
 use App\Http\Middleware\CheckAge;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PegawaiController;
-
+use App\Http\Controllers\CobaController;
 
 
 Route::get('/', function () {
@@ -126,4 +126,7 @@ Route::get('/session/delete', [SessionController::class, 'delete']);
 
 Route::get('/pegawai{nama}', [PegawaiController::class, 'index']);
 Route::get('/formulir', [PegawaiController::class, 'formulir']);
-Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
+Route::post('/formulir/proses', [PegawaiController::class, 'proses'])->name('formulir.proses');
+
+//Acara 18
+Route::get('/cobaerror/{nama}', [CobaController::class, 'index']);
