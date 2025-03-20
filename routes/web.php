@@ -9,6 +9,7 @@ use App\Http\Middleware\CheckAge;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\CobaController;
+use App\Http\Controllers\UploadController;
 
 
 Route::get('/', function () {
@@ -130,3 +131,8 @@ Route::post('/formulir/proses', [PegawaiController::class, 'proses'])->name('for
 
 //Acara 18
 Route::get('/cobaerror/{nama}', [CobaController::class, 'index']);
+
+//Acara 19
+Route::get('/upload', [UploadController::class, 'upload']);
+ Route::post('/upload/proses', [UploadController::class, 'proses_upload'])->name('upload.proses');
+ Route::post('/upload/resize', [UploadController::class, 'proses_upload'])->name('upload.resize');
