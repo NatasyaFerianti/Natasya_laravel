@@ -136,3 +136,14 @@ Route::get('/cobaerror/{nama}', [CobaController::class, 'index']);
 Route::get('/upload', [UploadController::class, 'upload']);
  Route::post('/upload/proses', [UploadController::class, 'proses_upload'])->name('upload.proses');
  Route::post('/upload/resize', [UploadController::class, 'proses_upload'])->name('upload.resize');
+
+ //Acara 20
+ Route::get('/dropzone', [UploadController::class, 'dropzone'])
+ ->name('dropzone');
+ Route::post('/dropzone/store', [UploadController::class, 'dropzone_store'])
+ ->name('dropzone.store');
+ //Route untuk upload file
+ Route::get('/pdf_upload', [UploadController::class, 'pdf_upload'])
+ ->name('pdf.upload');
+Route::post('/pdf/store', [UploadController::class, 'pdf_store'])
+->name('pdf.store');

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use File;
+use Image;
 
 class UploadController extends Controller
 {
    public function upload() {
-    return view('upload');
+    return view('upload.upload');
    }
    public function proses_upload(Request $request) {
     $this->validate($request, [
@@ -30,5 +32,33 @@ class UploadController extends Controller
     $tujuan_upload = 'data_file';
     // upload file
     $file->move($tujuan_upload, $file->getClientOriginalName());
+   }
+   
+   public function dropzone()
+   {
+    return view('dropzone');
+   }
+
+   public function dropzone_store(Request $request)
+   {
+    $image = $request->file('file');
+
+    $imageName = time().'.'.$image->extension();
+    $image->move(public_path('img/dropzone'), $imageName);
+    return response()->json(['success' => $imageName]);
+   }
+
+   public function pdf_upload()
+   {
+    return view('pdf_upload');
+   }
+
+   public function pdf_store(Request $request)
+   {
+    $pdf = $request->file('file');
+
+    $pdfName = 'pdf_'.time().'.'.$pdf->extension();
+    $pdf->move(public_path('pdf/dropzone'), $pdfName);
+    return response()->json(['succes' => $pdfName]);
    }
 }
