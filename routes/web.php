@@ -151,7 +151,6 @@ Route::post('/pdf/store', [UploadController::class, 'pdf_store'])
 ->name('pdf.store');
 
 //Acara 21
-//Acara 21
 Route::middleware('auth:api')->get('/pendidikan', function (Request $request) {
     return $request->user(); // User yang sedang login
 });
@@ -160,6 +159,7 @@ Route::middleware([CorsMiddleware::class])->group(function () {
     Route::get('/pendidikan', [ApiPendidikanController::class, 'getAll']);
 });
 
+//Acara 22
 Route::group(['prefix' => 'api'], function () {
     Route::get('api_pendidikan', [ApiPendidikanController::class, 'getAll']);
     Route::get('api_pendidikan/{id}', [ApiPendidikanController::class, 'getPen']);
@@ -167,3 +167,4 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('api_pendidikan/{id}', [ApiPendidikanController::class, 'updatePen']);
     Route::delete('api_pendidikan/{id}', [ApiPendidikanController::class, 'deletePen']);
 });
+
